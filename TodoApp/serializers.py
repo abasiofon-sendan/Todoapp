@@ -30,9 +30,6 @@ class TaskSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         task = Task.objects.create(**validated_data)
         profile = validated_data.get('profile')
-        # profile = Profile.objects.get(id=profile_id)
-        # profile.total_tasks += 1
-        # profile.pending_tasks += 1
         if profile:
             profile.total_tasks += 1
             profile.save()

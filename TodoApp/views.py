@@ -28,3 +28,9 @@ def add_task(request):
         serializer.save()
         return Response({"data": serializer.data}, status=status.HTTP_201_CREATED)
     return Response({"Error":serializer.errors})
+
+@api_view(["GET"])
+def get_task(request):
+    list_task = Task.objects.all()
+    serializer = TaskSerializer(list_task, many=True)
+    return Response({"data":serializer.data},status=status.HTTP_200_OK)
