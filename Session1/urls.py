@@ -23,4 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('product/', include('product.urls')),
     path('TodoApp/', include('TodoApp.urls')),
+    path('crud/',include('crud_operations.urls')),
+    path('auth/',include('djoser.urls')),
+    path('auth/',include('djoser.urls.jwt')),
+    path('blog/',include('SimpleBlog.urls')),
 ]

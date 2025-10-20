@@ -9,6 +9,8 @@ from rest_framework.decorators import api_view
 from .models import Student, School, Students
 from .serializers import StudentSerializer, SchoolSerializer
 
+from rest_framework.generics import ListAPIView,CreateAPIView,RetrieveUpdateDestroyAPIView
+
 
 # Create your views here.
 
@@ -116,5 +118,18 @@ def student_list_create(request):
             serializer.save()
             return Response({"Data":serializer.data},status=201)
         return Response({"Error":serializer.errors})
+    
+#Generic view
 
+class StudentListCreateView(ListAPIView):
+    queryset=Students.objects.all()
+    serializer_class=StudentSerializer
+
+class StudentCreateView(CreateAPIView):
+    queryset=Students.objects.all()
+    serializer_class=StudentSerializer
+
+class DeleteUpdate(RetrieveUpdateDestroyAPIView):
+    queryset=Students.objects.all()
+    serializer_class=StudentSerializer
     
